@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lappka.Notification.Api", "Lappka.Notification.Api\Lappka.Notification.Api.csproj", "{4FB7D8D7-9B53-42DC-B87E-45DB30CFF578}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lappka.Notification.Application", "Lappka.Notification.Application\Lappka.Notification.Application.csproj", "{1268CF31-BF96-418D-AA18-2FB67108BF4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lappka.Notification.Infrastructure", "Lappka.Notification.Infrastructure\Lappka.Notification.Infrastructure.csproj", "{CD2CABCE-E285-4287-8D97-80A7F8E4EEA8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lappka.Notification.Core", "Lappka.Notification.Core\Lappka.Notification.Core.csproj", "{560A1766-B220-4E94-B42E-603767B8AD6B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4FB7D8D7-9B53-42DC-B87E-45DB30CFF578}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FB7D8D7-9B53-42DC-B87E-45DB30CFF578}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FB7D8D7-9B53-42DC-B87E-45DB30CFF578}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FB7D8D7-9B53-42DC-B87E-45DB30CFF578}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1268CF31-BF96-418D-AA18-2FB67108BF4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1268CF31-BF96-418D-AA18-2FB67108BF4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1268CF31-BF96-418D-AA18-2FB67108BF4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1268CF31-BF96-418D-AA18-2FB67108BF4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD2CABCE-E285-4287-8D97-80A7F8E4EEA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD2CABCE-E285-4287-8D97-80A7F8E4EEA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD2CABCE-E285-4287-8D97-80A7F8E4EEA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD2CABCE-E285-4287-8D97-80A7F8E4EEA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{560A1766-B220-4E94-B42E-603767B8AD6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{560A1766-B220-4E94-B42E-603767B8AD6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{560A1766-B220-4E94-B42E-603767B8AD6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{560A1766-B220-4E94-B42E-603767B8AD6B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
