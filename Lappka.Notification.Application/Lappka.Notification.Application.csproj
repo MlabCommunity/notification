@@ -6,5 +6,17 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
     </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Lappka.Notification.Core\Lappka.Notification.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Grpc.AspNetCore" Version="2.47.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProtoBuf Include="Protos\notification.proto" GrpcService="Server" />
+    </ItemGroup>
     
 </Project>
