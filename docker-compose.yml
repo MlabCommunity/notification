@@ -1,0 +1,13 @@
+﻿version: '3'
+services:
+  postgres:
+    image: postgres:14
+    container_name: postgresNotification
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    ports:
+      - 5430:5432
+    volumes:
+      - ./volumes/postgres:/var/lib/postgresql/14/data
+    restart: unless-stopped
