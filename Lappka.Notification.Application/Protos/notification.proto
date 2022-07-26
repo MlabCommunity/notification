@@ -7,9 +7,22 @@ import "google/protobuf/empty.proto";
 package notification.protos;
 
 service NotificationService {
-    rpc RestartPassword(RestartPasswordRequest) returns (google.protobuf.Empty);
+  rpc RestartPassword(ResetPasswordRequest) returns (google.protobuf.Empty);
+  rpc ConfirmEmail(ConfirmEmailRequest) returns (google.protobuf.Empty);
+  rpc ResetEmail(ResetEmailRequest) returns (google.protobuf.Empty);
 }
 
-message RestartPasswordRequest{
-    string email= 1;
+message ResetPasswordRequest{
+  string email = 1;
+  string token = 2;
+}
+
+message ConfirmEmailRequest{
+  string email = 1;
+  string token = 2;
+}
+
+message ResetEmailRequest{
+  string email = 1;
+  string token = 2;
 }
