@@ -1,7 +1,7 @@
 using Lapka.Notification.Application;
 using Lapka.Notification.Infrastructure;
 using Lapka.Notification.Infrastructure.DataBase;
-using Lapka.Notification.Infrastructure.Services;
+using Lapka.Notification.Infrastructure.gRPC;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,7 +11,6 @@ builder.Services.AddControllers();
 
 builder.Services.Configure<DataProtectionTokenProviderOptions>(opt =>
     opt.TokenLifespan = TimeSpan.FromHours(1));
-
 
 var connectionString = builder.Configuration.GetConnectionString("postgres");
 builder.Services.AddDbContext<DataContext>(x => x.UseNpgsql(connectionString));
@@ -25,7 +24,7 @@ builder.Services.AddEndpointsApiExplorer();
 
 var app = builder.Build();
 
-app.MapGrpcService<NotificationGrpcService>();
+app.MapGrpcService<NotificationGrpcController>();
 
 app.UseHttpsRedirection();
 

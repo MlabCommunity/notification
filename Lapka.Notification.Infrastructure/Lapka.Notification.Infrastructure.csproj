@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="Protos\Notification.proto" GrpcServices="Server" />
+    <Protobuf Include="gRPC\Protos\Notification.proto" GrpcServices="Server" />
   </ItemGroup>
 
   <ItemGroup>

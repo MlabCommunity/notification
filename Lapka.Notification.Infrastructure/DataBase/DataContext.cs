@@ -1,10 +1,14 @@
 ﻿using Lapka.Notification.Core.Domain;
+using Lapka.Notification.Core.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lapka.Notification.Infrastructure.DataBase;
 
 public class DataContext : DbContext
 {
+    public DbSet<UserData> UserData { get; set; }
+    public DbSet<Core.Domain.Entities.NotificationHistory> NotificationHistory { get; set; }
+
     public DataContext(DbContextOptions<DataContext> options)
         : base(options)
     {
