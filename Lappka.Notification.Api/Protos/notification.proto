@@ -1,15 +1,16 @@
 syntax = "proto3";
 
-option csharp_namespace = "Lappka.Notification.Application";
+//ask mentor where should be this proto
+option csharp_namespace = "Lappka.Notification.Api";
 
 import "google/protobuf/empty.proto";
 
 package notification.protos;
 
-service NotificationService {
-  rpc RestartPassword(ResetPasswordRequest) returns (google.protobuf.Empty);
+service NotificationController {
+  rpc ResetPassword(ResetPasswordRequest) returns (google.protobuf.Empty);
   rpc ConfirmEmail(ConfirmEmailRequest) returns (google.protobuf.Empty);
-  rpc ResetEmail(ResetEmailRequest) returns (google.protobuf.Empty);
+  rpc ChangeEmail(ChangeEmailRequest) returns (google.protobuf.Empty);
 }
 
 message ResetPasswordRequest{
@@ -22,7 +23,7 @@ message ConfirmEmailRequest{
   string token = 2;
 }
 
-message ResetEmailRequest{
+message ChangeEmailRequest{
   string email = 1;
   string token = 2;
 }

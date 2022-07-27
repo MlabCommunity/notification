@@ -3,7 +3,7 @@ using Grpc.Core;
 
 namespace Lappka.Notification.Application.Services;
 
-public class NotificationGrpcService : NotificationService.NotificationServiceBase
+public class NotificationGrpcController : NotificationController.NotificationControllerBase
 {
     public override async Task<Empty> ConfirmEmail(ConfirmEmailRequest request, ServerCallContext context)
     {
@@ -11,13 +11,13 @@ public class NotificationGrpcService : NotificationService.NotificationServiceBa
         return new();
     }
 
-    public override async Task<Empty> ResetEmail(ResetEmailRequest request, ServerCallContext context)
+    public override async Task<Empty> ChangeEmail(ChangeEmailRequest request, ServerCallContext context)
     {
         Console.WriteLine($"ResetEmail called,Email {request.Email}, token {request.Token}");
         return new();
     }
 
-    public override async Task<Empty> RestartPassword(ResetPasswordRequest request, ServerCallContext context)
+    public override async Task<Empty> ResetPassword(ResetPasswordRequest request, ServerCallContext context)
     {
         Console.WriteLine($"RestartPassword called,Email {request.Email}, token {request.Token}");
         return new();
