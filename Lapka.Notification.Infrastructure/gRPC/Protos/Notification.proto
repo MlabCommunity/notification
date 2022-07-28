@@ -1,7 +1,7 @@
 ﻿syntax = "proto3";
-option csharp_namespace = "Lapka.NotificationHistory.Infrastructure";
+option csharp_namespace = "Lapka.Notification.Infrastructure";
 
-package NotificationHistory.protos;
+package Notification.protos;
 import "google/protobuf/empty.proto";
 
 service NotificationService

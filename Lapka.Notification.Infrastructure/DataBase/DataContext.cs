@@ -1,5 +1,6 @@
 ﻿using Lapka.Notification.Core.Domain;
 using Lapka.Notification.Core.Domain.Entities;
+using Lapka.Notification.Core.Domain.EntityConfiguration;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lapka.Notification.Infrastructure.DataBase;
@@ -17,7 +18,7 @@ public class DataContext : DbContext
     protected override void OnModelCreating(ModelBuilder builder)
     {
         builder.HasDefaultSchema("notification");
-        builder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+        builder.ApplyConfigurationsFromAssembly(typeof(NotificationHistoryConfiguration).Assembly);
 
         base.OnModelCreating(builder);
     }

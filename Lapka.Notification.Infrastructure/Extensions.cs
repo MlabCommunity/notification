@@ -1,5 +1,7 @@
-﻿using Lapka.Notification.Infrastructure.DataBase;
+﻿using Lapka.Notification.Application.Interfaces;
+using Lapka.Notification.Infrastructure.DataBase;
 using Lapka.Notification.Infrastructure.Exceptions;
+using Lapka.Notification.Infrastructure.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,6 +24,8 @@ public static class Extensions
 
         services.AddHostedService<DbMigrator>();
         services.AddScoped<ExceptionMiddleware>();
+        services.AddScoped<INotificationHistoryRepository, NotificationHistoryRepository>();
+        services.AddScoped<IUserDataRepository, UserDataRepository>();
 
         return services;
     }

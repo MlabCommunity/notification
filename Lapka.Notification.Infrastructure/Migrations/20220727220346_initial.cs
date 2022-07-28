@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Lapka.Notification.Infrastructure.DataBase.Migrations
+namespace Lapka.Notification.Infrastructure.Migrations
 {
     public partial class initial : Migration
     {
@@ -18,10 +18,10 @@ namespace Lapka.Notification.Infrastructure.DataBase.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Username = table.Column<string>(type: "text", nullable: true),
-                    Email = table.Column<string>(type: "text", nullable: true),
-                    FirstName = table.Column<string>(type: "text", nullable: true),
-                    LastName = table.Column<string>(type: "text", nullable: true)
+                    Username = table.Column<string>(type: "character varying(64)", maxLength: 64, nullable: false),
+                    Email = table.Column<string>(type: "text", nullable: false),
+                    FirstName = table.Column<string>(type: "character varying(32)", maxLength: 32, nullable: false),
+                    LastName = table.Column<string>(type: "character varying(32)", maxLength: 32, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -34,9 +34,9 @@ namespace Lapka.Notification.Infrastructure.DataBase.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Type = table.Column<int>(type: "integer", nullable: false),
-                    UserEmail = table.Column<string>(type: "text", nullable: true),
-                    Subject = table.Column<string>(type: "text", nullable: true),
+                    Type = table.Column<string>(type: "character varying(32)", maxLength: 32, nullable: false),
+                    UserEmail = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: false),
+                    Subject = table.Column<string>(type: "character varying(64)", maxLength: 64, nullable: false),
                     Body = table.Column<string>(type: "text", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsSend = table.Column<bool>(type: "boolean", nullable: false),
@@ -50,8 +50,7 @@ namespace Lapka.Notification.Infrastructure.DataBase.Migrations
                         column: x => x.UserId,
                         principalSchema: "notification",
                         principalTable: "UserData",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(

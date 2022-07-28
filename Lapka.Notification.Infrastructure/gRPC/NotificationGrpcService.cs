@@ -2,15 +2,14 @@
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using Lapka.Notification.Application.Commands;
-using Lapka.NotificationHistory.Infrastructure;
 
 namespace Lapka.Notification.Infrastructure.gRPC;
 
-public class NotificationGrpcController : NotificationService.NotificationServiceBase
+public class NotificationGrpcService : NotificationService.NotificationServiceBase
 {
     private readonly ICommandDispatcher _commandDispatcher;
 
-    public NotificationGrpcController(ICommandDispatcher commandDispatcher)
+    public NotificationGrpcService(ICommandDispatcher commandDispatcher)
     {
         _commandDispatcher = commandDispatcher;
     }
