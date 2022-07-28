@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Lapka.Notification.Infrastructure.Migrations
+namespace Lapka.Notification.Infrastructure.DataBase.Migrations
 {
     public partial class initial : Migration
     {

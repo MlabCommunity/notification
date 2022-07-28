@@ -24,7 +24,7 @@ builder.Services.AddEndpointsApiExplorer();
 
 var app = builder.Build();
 
-app.MapGrpcService<NotificationGrpcService>();
+app.MapGrpcService<NotificationGrpcController>();
 
 app.UseHttpsRedirection();
 

@@ -3,19 +3,17 @@ using System;
 using Lapka.Notification.Infrastructure.DataBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Lapka.Notification.Infrastructure.Migrations
+namespace Lapka.Notification.Infrastructure.DataBase.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220727220346_initial")]
-    partial class initial
+    partial class DataContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

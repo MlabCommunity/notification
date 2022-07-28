@@ -21,9 +21,10 @@ public static class Extensions
         IConfiguration configuration)
     {
         services.AddGrpc();
+        services.AddGrpc(c => c.Interceptors.Add<GrpcExceptionHandler>());
 
         services.AddHostedService<DbMigrator>();
-        services.AddScoped<ExceptionMiddleware>();
+        services.AddScoped<ProjectExceptionMiddleware>();
         services.AddScoped<INotificationHistoryRepository, NotificationHistoryRepository>();
         services.AddScoped<IUserDataRepository, UserDataRepository>();
 
@@ -32,7 +33,7 @@ public static class Extensions
 
     public static IApplicationBuilder UseInfrastucture(this IApplicationBuilder app)
     {
-        app.UseMiddleware<ExceptionMiddleware>();
+        app.UseMiddleware<ProjectExceptionMiddleware>();
         return app;
     }
 }

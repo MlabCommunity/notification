@@ -2,4 +2,4 @@
 
 namespace Lapka.Notification.Application.Commands;
 
-public record SendEmailToResetEmailCommand(string Email, string Token) : ICommand;
+public record SendEmailToResetEmailCommand(string Email, string Token, Guid Id) : ICommand;

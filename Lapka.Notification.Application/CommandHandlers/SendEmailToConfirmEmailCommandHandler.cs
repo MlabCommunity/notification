@@ -1,12 +1,22 @@
 ﻿using Convey.CQRS.Commands;
 using Lapka.Notification.Application.Commands;
+using Lapka.Notification.Application.Interfaces;
 
 namespace Lapka.Notification.Application.CommandHandlers;
 
 public class SendEmailToConfirmEmailCommandHandler : ICommandHandler<SendEmailToConfirmEmailCommand>
 {
-    public Task HandleAsync(SendEmailToConfirmEmailCommand command, CancellationToken cancellationToken = new CancellationToken())
+    private readonly INotificationHistoryRepository _notificationHistoryRepository;
+
+    public SendEmailToConfirmEmailCommandHandler(INotificationHistoryRepository notificationHistoryRepository)
     {
-        throw new NotImplementedException();
+        _notificationHistoryRepository = notificationHistoryRepository;
+    }
+
+    public async Task HandleAsync(SendEmailToConfirmEmailCommand command, CancellationToken cancellationToken = new CancellationToken())
+    {
+        Console.WriteLine($"Potwierdzenie maila {command.Email}, tokenem: {command.Token}");
+
+        await _notificationHistoryRepository.MarkAsSend(command.Id);
     }
 }
