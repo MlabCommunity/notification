@@ -1,6 +1,6 @@
 ﻿using Convey.CQRS.Commands;
 using Lapka.Notification.Application.Commands;
-using Lapka.Notification.Application.Exceptions.GGrpcExceptions;
+using Lapka.Notification.Application.Exceptions.GrpcExceptions;
 using Lapka.Notification.Application.Interfaces;
 using Lapka.Notification.Core.Domain;
 using Lapka.Notification.Core.Domain.Entities;

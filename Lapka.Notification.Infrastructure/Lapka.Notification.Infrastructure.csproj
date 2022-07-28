@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Grpc.AspNetCore" Version="2.47.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.7">
@@ -22,10 +21,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Lapka.Notification.Application\Lapka.Notification.Application.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Protobuf Include="gRPC\Protos\Notification.proto" GrpcServices="Server" />
   </ItemGroup>
 
   <ItemGroup>

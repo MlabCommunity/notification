@@ -20,9 +20,6 @@ public static class Extensions
     public static IServiceCollection AddInfrastructure(this IServiceCollection services,
         IConfiguration configuration)
     {
-        services.AddGrpc();
-        services.AddGrpc(c => c.Interceptors.Add<GrpcExceptionHandler>());
-
         services.AddHostedService<DbMigrator>();
         services.AddScoped<ProjectExceptionMiddleware>();
         services.AddScoped<INotificationHistoryRepository, NotificationHistoryRepository>();

@@ -3,7 +3,7 @@ using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using Lapka.Notification.Application.Commands;
 
-namespace Lapka.Notification.Infrastructure.gRPC;
+namespace Lapka.Notification.Api.gRPC.Controllers;
 
 public class NotificationGrpcController : NotificationService.NotificationServiceBase
 {

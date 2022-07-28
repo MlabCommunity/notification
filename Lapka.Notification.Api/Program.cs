@@ -1,13 +1,17 @@
+using Lapka.Notification.Api.gRPC.Controllers;
 using Lapka.Notification.Application;
 using Lapka.Notification.Infrastructure;
 using Lapka.Notification.Infrastructure.DataBase;
-using Lapka.Notification.Infrastructure.gRPC;
+using Lapka.Notification.Infrastructure.Exceptions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+
+builder.Services.AddGrpc();
+builder.Services.AddGrpc(c => c.Interceptors.Add<GrpcExceptionHandler>());
 
 builder.Services.Configure<DataProtectionTokenProviderOptions>(opt =>
     opt.TokenLifespan = TimeSpan.FromHours(1));
