@@ -1,8 +1,8 @@
-using Lappka.Notification.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Scheme.Core.Entities;
 
-namespace Lappka.Notification.Infrastructure.Database.Config;
+namespace Scheme.Infrastructure.Database.Config;
 
 internal sealed class EntitiesConfig : IEntityTypeConfiguration<NotificationHistory> ,IEntityTypeConfiguration<UserData>
 {

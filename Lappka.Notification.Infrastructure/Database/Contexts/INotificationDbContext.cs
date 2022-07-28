@@ -1,7 +1,7 @@
-using Lappka.Notification.Core.Entities;
 using Microsoft.EntityFrameworkCore;
+using Scheme.Core.Entities;
 
-namespace Lappka.Notification.Infrastructure.Database.Contexts;
+namespace Scheme.Infrastructure.Database.Contexts;
 
 public interface INotificationDbContext
 {

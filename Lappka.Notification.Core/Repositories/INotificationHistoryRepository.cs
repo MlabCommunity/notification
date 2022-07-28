@@ -1,6 +1,6 @@
-using Lappka.Notification.Core.Entities;
+using Scheme.Core.Entities;
 
-namespace Lappka.Notification.Core.Repositories;
+namespace Scheme.Core.Repositories;
 
 public interface INotificationHistoryRepository
 {

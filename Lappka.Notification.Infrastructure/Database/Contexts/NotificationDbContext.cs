@@ -1,8 +1,8 @@
-using Lappka.Notification.Core.Entities;
-using Lappka.Notification.Infrastructure.Database.Config;
 using Microsoft.EntityFrameworkCore;
+using Scheme.Core.Entities;
+using Scheme.Infrastructure.Database.Config;
 
-namespace Lappka.Notification.Infrastructure.Database.Contexts;
+namespace Scheme.Infrastructure.Database.Contexts;
 
 internal sealed class NotificationDbContext : DbContext, INotificationDbContext
 {

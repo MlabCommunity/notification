@@ -4,33 +4,26 @@
         <TargetFramework>net6.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Convey" Version="1.0.541" />
-        <PackageReference Include="Convey.CQRS.Commands" Version="1.0.541" />
-        <PackageReference Include="Convey.CQRS.Queries" Version="1.0.541" />
+        <PackageReference Include="Grpc.AspNetCore" Version="2.47.0" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.7">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+        <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.4.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Grpc.AspNetCore" Version="2.47.0" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\Lappka.Notification.Application\Lappka.Notification.Application.csproj" />
       <ProjectReference Include="..\Lappka.Notification.Infrastructure\Lappka.Notification.Infrastructure.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <Protobuf Include="Protos\notification.proto">
-        <Generator>MSBuild:Compile</Generator>
-      </Protobuf>
+        <Protobuf Include="Protos\notification.proto">
+            <Generator>MSBuild:Compile</Generator>
+        </Protobuf>
     </ItemGroup>
 
 </Project>

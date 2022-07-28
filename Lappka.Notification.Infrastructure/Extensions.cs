@@ -1,13 +1,10 @@
-using Lappka.Notification.Core.Repositories;
-using Lappka.Notification.Infrastructure.Database;
-using Lappka.Notification.Infrastructure.Database.Postgres;
-using Lappka.Notification.Infrastructure.Exceptions;
-using Lappka.Notification.Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Scheme.Infrastructure.Database;
+using Scheme.Infrastructure.Services;
 
-namespace Lappka.Notification.Infrastructure;
+namespace Scheme.Infrastructure;
 
 public static class Extensions
 {
@@ -21,13 +18,13 @@ public static class Extensions
     
     public static IServiceCollection AddMiddleware(this IServiceCollection services)
     {
-        services.AddScoped<ExceptionMiddleware>();
+  
         return services;
     }
 
     public static IApplicationBuilder UseMiddleware(this IApplicationBuilder app)
     {
-        app.UseMiddleware<ExceptionMiddleware>();
+
         return app;
     }
 }

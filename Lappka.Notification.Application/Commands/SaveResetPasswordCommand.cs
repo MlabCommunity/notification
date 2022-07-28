@@ -1,8 +1,8 @@
 using Convey.CQRS.Commands;
 
-namespace Lappka.Notification.Application.Commands;
+namespace Scheme.Application.Commands;
 
-public record SaveResetEmailCommand : ICommand
+public record SaveResetPasswordCommand : ICommand
 {
     public Guid NotificationId { get; init; } 
     public string Email { get; init; }

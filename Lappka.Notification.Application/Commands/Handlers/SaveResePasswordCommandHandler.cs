@@ -1,12 +1,12 @@
 using Convey.CQRS.Commands;
-using Lappka.Notification.Application.Exceptions;
-using Lappka.Notification.Core.Entities;
-using Lappka.Notification.Core.Repositories;
-using static Lappka.Notification.Core.Consts.EventType;
+using Scheme.Application.Exceptions;
+using Scheme.Core.Entities;
+using Scheme.Core.Repositories;
+using static Scheme.Core.Consts.EventType;
 
-namespace Lappka.Notification.Application.Commands.Handlers;
+namespace Scheme.Application.Commands.Handlers;
 
-internal sealed class SaveResetPasswordCommandHandler : ICommandHandler<SaveResetEmailCommand>
+public class SaveResetPasswordCommandHandler : ICommandHandler<SaveResetPasswordCommand>
 {
     private readonly IUserDataRepository _userDataRepository;
     private readonly INotificationHistoryRepository _notificationHistoryRepository;
@@ -18,7 +18,7 @@ internal sealed class SaveResetPasswordCommandHandler : ICommandHandler<SaveRese
         _notificationHistoryRepository = notificationHistoryRepository;
     }
 
-    public async Task HandleAsync(SaveResetEmailCommand command,
+    public async Task HandleAsync(SaveResetPasswordCommand command,
         CancellationToken cancellationToken = new CancellationToken())
     {
         var userData = await _userDataRepository.GetByEmailAsync(command.Email);

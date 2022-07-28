@@ -1,23 +1,18 @@
 using Convey.CQRS.Commands;
-using Convey.CQRS.Queries;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
-using Lappka.Notification.Application.Commands;
-using Lappka.Notification.Application.Commands.Handlers;
+using Scheme.Application.Commands;
 
-
-namespace Lappka.Notification.Api.GrpcControllers;
+namespace Lappka.Notification.Api.Controllers;
 
 public class NotificationGrpcController : NotificationController.NotificationControllerBase
 {
     private readonly ICommandDispatcher _commandDispatcher;
 
-    public NotificationGrpcController(ICommandDispatcher commandDispatcher)
+    public NotificationGrpcController(ICommandDispatcher commandDispatcher )
     {
         _commandDispatcher = commandDispatcher;
     }
-
-
     public override async Task<Empty> ConfirmEmail(ConfirmEmailRequest request, ServerCallContext context)
     {
         var notificationId = Guid.NewGuid();
@@ -30,6 +25,7 @@ public class NotificationGrpcController : NotificationController.NotificationCon
         };
 
         await _commandDispatcher.SendAsync(saveCommand);
+        // await _test.HandleAsync(saveCommand);
 
         var sendCommand = new SendConfirmationEmailCommand
         {
@@ -73,7 +69,7 @@ public class NotificationGrpcController : NotificationController.NotificationCon
     {
         var notificationId = Guid.NewGuid();
 
-        var saveCommand = new SendResetPasswordCommand
+        var saveCommand = new SaveResetPasswordCommand
         {
             NotificationId = notificationId,
             Email = request.Email,

@@ -1,8 +1,10 @@
-namespace Lappka.Notification.Application.Exceptions;
+using Grpc.Core;
 
-public class UserDataNotFoundException : ProjectException
+namespace Scheme.Application.Exceptions;
+
+public class UserDataNotFoundException : ProjectGrpcException
 {
-    public UserDataNotFoundException(int errorCode = 404) : base("User data not found", errorCode)
+    public UserDataNotFoundException( StatusCode errorCode = StatusCode.NotFound) : base("User Data not found", errorCode)
     {
     }
 }

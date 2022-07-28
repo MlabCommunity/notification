@@ -1,4 +1,4 @@
-namespace Lappka.Notification.Core.Entities;
+namespace Scheme.Core.Entities;
 
 public class UserData
 {

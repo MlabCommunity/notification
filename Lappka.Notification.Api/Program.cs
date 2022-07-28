@@ -1,35 +1,24 @@
-using Convey;
-using Convey.CQRS.Commands;
-using Convey.CQRS.Queries;
-using Lappka.Notification.Api.GrpcControllers;
-using Lappka.Notification.Infrastructure;
-
+using Lappka.Notification.Api.Controllers;
+using Scheme.Application;
+using Scheme.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddMiddleware();
+// Add services to the container.
+
+
+builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddControllers();
-
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-builder.Services.AddGrpc();
-
-builder.Services.AddConvey()
-    .AddCommandHandlers()
-    .AddInMemoryCommandDispatcher()
-    .AddQueryHandlers()
-    .AddInMemoryQueryDispatcher()
-    .Build();
-
-
+builder.Services.AddGrpc(o=>o.EnableDetailedErrors = true);
 var app = builder.Build();
 
-app.UseConvey();
 
 app.MapGrpcService<NotificationGrpcController>();
-
+// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

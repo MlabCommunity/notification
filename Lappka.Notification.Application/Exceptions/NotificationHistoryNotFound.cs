@@ -1,8 +1,12 @@
-namespace Lappka.Notification.Application.Exceptions;
 
-public class NotificationHistoryNotFound : ProjectException
+
+using Grpc.Core;
+
+namespace Scheme.Application.Exceptions;
+
+public class NotificationHistoryNotFound : ProjectGrpcException
 {
-    public NotificationHistoryNotFound( int errorCode = 404) : base("Notification history not found", errorCode)
+    public NotificationHistoryNotFound(StatusCode errorCode = StatusCode.NotFound) : base("Notification history not found", errorCode)
     {
     }
 }

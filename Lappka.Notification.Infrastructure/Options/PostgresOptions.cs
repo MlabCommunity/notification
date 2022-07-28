@@ -1,4 +1,4 @@
-namespace Lappka.Notification.Infrastructure.Options;
+namespace Scheme.Infrastructure.Options;
 
 public class PostgresOptions
 {

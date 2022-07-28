@@ -1,6 +1,6 @@
 using Convey.CQRS.Commands;
 
-namespace Lappka.Notification.Application.Commands;
+namespace Scheme.Application.Commands;
 
 public record SaveChangeEmailCommand : ICommand
 {
