@@ -1,11 +1,36 @@
 using Convey.CQRS.Commands;
+using Lappka.Notification.Application.Exceptions;
+using Lappka.Notification.Core.Entities;
+using Lappka.Notification.Core.Repositories;
+using static Lappka.Notification.Core.Consts.EventType;
 
 namespace Lappka.Notification.Application.Commands.Handlers;
 
-public class SaveEmailCommandHandler : ICommandHandler<SaveEmailCommand>
+internal sealed class SaveConfirmationEmailCommandHandler : ICommandHandler<SaveConfirmationEmailCommand>
 {
-    public async Task HandleAsync(SaveEmailCommand command, CancellationToken cancellationToken = new CancellationToken())
+    private readonly IUserDataRepository _userDataRepository;
+    private readonly INotificationHistoryRepository _notificationHistoryRepository;
+
+    public SaveConfirmationEmailCommandHandler(IUserDataRepository userDataRepository,
+        INotificationHistoryRepository notificationHistoryRepository)
     {
-        await Task.CompletedTask;
+        _userDataRepository = userDataRepository;
+        _notificationHistoryRepository = notificationHistoryRepository;
+    }
+
+    public async Task HandleAsync(SaveConfirmationEmailCommand command,
+        CancellationToken cancellationToken = new CancellationToken())
+    {
+        var userData = await _userDataRepository.GetByEmailAsync(command.Email);
+
+        if (userData is null)
+        {
+            throw new UserDataNotFoundException();
+        }
+        
+        var notificationHistory = new NotificationHistory(command.NotificationId, EMAIL_CONFIRM, userData,
+            command.Email, command.ConfirmationToken);
+
+        await _notificationHistoryRepository.AddAsync(notificationHistory);
     }
 }

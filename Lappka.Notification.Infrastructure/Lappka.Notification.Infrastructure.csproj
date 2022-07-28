@@ -7,16 +7,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Lappka.Notification.Application\Lappka.Notification.Application.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Exceptions" />
-    </ItemGroup>
-
-    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.7" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.0" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
       <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.5" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Lappka.Notification.Application\Lappka.Notification.Application.csproj" />
+      <ProjectReference Include="..\Lappka.Notification.Core\Lappka.Notification.Core.csproj" />
     </ItemGroup>
 
     

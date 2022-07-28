@@ -1,25 +1,22 @@
 using Convey.CQRS.Commands;
 using Lappka.Notification.Application.Exceptions;
-using Lappka.Notification.Core.Entities;
 using Lappka.Notification.Core.Repositories;
-using static Lappka.Notification.Core.Consts.EventType;
 
 namespace Lappka.Notification.Application.Commands.Handlers;
 
-internal sealed class SaveChangeEmailCommandHandler : ICommandHandler<SaveChangeEmailCommand>
+internal sealed class SendResetPasswordCommandHandler : ICommandHandler<SendResetPasswordCommand>
 {
     private readonly IUserDataRepository _userDataRepository;
     private readonly INotificationHistoryRepository _notificationHistoryRepository;
 
-    public SaveChangeEmailCommandHandler(IUserDataRepository userDataRepository,
+    public SendResetPasswordCommandHandler(IUserDataRepository userDataRepository,
         INotificationHistoryRepository notificationHistoryRepository)
     {
         _userDataRepository = userDataRepository;
         _notificationHistoryRepository = notificationHistoryRepository;
+        
     }
-
-    public async Task HandleAsync(SaveChangeEmailCommand command,
-        CancellationToken cancellationToken = new CancellationToken())
+    public async Task HandleAsync(SendResetPasswordCommand command, CancellationToken cancellationToken = new CancellationToken())
     {
         var userData = await _userDataRepository.GetByEmailAsync(command.Email);
 
@@ -28,9 +25,17 @@ internal sealed class SaveChangeEmailCommandHandler : ICommandHandler<SaveChange
             throw new UserDataNotFoundException();
         }
 
-        var notificationHistory = new NotificationHistory(command.NotificationId, EMAIL_CHANGE, userData,
-            command.Email, command.ConfirmationToken);
+        var notificationHistory = await _notificationHistoryRepository.GetAsync(command.NotificationId);
 
-        await _notificationHistoryRepository.AddAsync(notificationHistory);
+        if (notificationHistory is null)
+        {
+            throw new NotificationHistoryNotFound();
+        }
+
+        Console.Write("Email has been sent");  //TODO: Send email
+
+        notificationHistory.SendNotification(); 
+
+        await _notificationHistoryRepository.UpdateAsync(notificationHistory);
     }
 }

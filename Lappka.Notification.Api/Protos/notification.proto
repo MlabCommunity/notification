@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-//ask mentor where should be this proto
+// TODO: ask mentor where should be this proto
 option csharp_namespace = "Lappka.Notification.Api";
 
 import "google/protobuf/empty.proto";
 
-package notification.protos;
+package notification.protos; //TOOD: ask mentor where should be this proto
 
 service NotificationController {
   rpc ResetPassword(ResetPasswordRequest) returns (google.protobuf.Empty);

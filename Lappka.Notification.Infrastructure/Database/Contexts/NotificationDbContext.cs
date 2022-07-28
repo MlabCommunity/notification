@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Lappka.Notification.Infrastructure.Database.Contexts;
 
-public class NotificationDbContext : DbContext, INotificationDbContext
+internal sealed class NotificationDbContext : DbContext, INotificationDbContext
 {
     public DbSet<NotificationHistory> NotificationsHistory { get; set; }
     public DbSet<UserData> UsersData { get; set; }

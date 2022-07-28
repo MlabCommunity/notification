@@ -8,6 +8,13 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Convey" Version="1.0.541" />
+        <PackageReference Include="Convey.CQRS.Commands" Version="1.0.541" />
+        <PackageReference Include="Convey.CQRS.Queries" Version="1.0.541" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.7">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     </ItemGroup>
 
@@ -16,7 +23,14 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Lappka.Notification.Application\Lappka.Notification.Application.csproj" />
       <ProjectReference Include="..\Lappka.Notification.Infrastructure\Lappka.Notification.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Protobuf Include="Protos\notification.proto">
+        <Generator>MSBuild:Compile</Generator>
+      </Protobuf>
     </ItemGroup>
 
 </Project>

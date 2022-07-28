@@ -2,7 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace Lappka.Notification.Core.Services;
+
+namespace Lappka.Notification.Infrastructure.Services;
 
 internal sealed class AppInitializer : IHostedService
 {

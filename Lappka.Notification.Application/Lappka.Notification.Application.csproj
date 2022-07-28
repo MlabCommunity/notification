@@ -12,11 +12,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Grpc.AspNetCore" Version="2.47.0" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <ProtoBuf Include="Protos\notification.proto" GrpcService="Server" />
+      <PackageReference Include="Convey.CQRS.Commands" Version="1.0.541" />
     </ItemGroup>
     
 </Project>
