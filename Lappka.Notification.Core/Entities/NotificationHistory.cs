@@ -4,13 +4,13 @@ namespace Scheme.Core.Entities;
 
 public class NotificationHistory
 {
-    public Guid Id { get; private set; }
-    private EventType EventType;
+    public Guid Id { get;  set; }
+    public EventType EventType { get; private set; }
     public UserData User { get; private set; }
-    private string Subject;
-    private string Body;
-    private bool isSent;
-    private DateTime CreatedAt;
+    public string Subject{ get; private set; }
+    public string Body{ get; private set; }
+    public bool isSent{ get; private set; }
+    public DateTime CreatedAt { get; private set; }
 
     private NotificationHistory()
     {

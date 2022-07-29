@@ -19,7 +19,7 @@ public class SendConfirmationEmailCommandHandler : ICommandHandler<SendConfirmat
     public async Task HandleAsync(SendConfirmationEmailCommand command,
         CancellationToken cancellationToken = new CancellationToken())
     {
-        var userData = await _userDataRepository.GetByEmailAsync(command.Email);
+        var userData = await _userDataRepository.FindByEmailAsync(command.Email);
         
         if (userData is null)
         {

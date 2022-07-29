@@ -19,7 +19,7 @@ public class SendChangeEmailCommandHandler : ICommandHandler<SendChangeEmailComm
     public async Task HandleAsync(SendChangeEmailCommand command,
         CancellationToken cancellationToken = new CancellationToken())
     {
-        var userData = await _userDataRepository.GetByEmailAsync(command.Email);
+        var userData = await _userDataRepository.FindByEmailAsync(command.Email);
 
         if (userData is null)
         {

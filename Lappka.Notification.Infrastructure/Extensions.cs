@@ -16,12 +16,6 @@ public static class Extensions
         return services;
     }
     
-    public static IServiceCollection AddMiddleware(this IServiceCollection services)
-    {
-  
-        return services;
-    }
-
     public static IApplicationBuilder UseMiddleware(this IApplicationBuilder app)
     {
 

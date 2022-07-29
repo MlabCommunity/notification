@@ -21,7 +21,7 @@ public class SaveChangeEmailCommandHandler : ICommandHandler<SaveChangeEmailComm
     public async Task HandleAsync(SaveChangeEmailCommand command,
         CancellationToken cancellationToken = new CancellationToken())
     {
-        var userData = await _userDataRepository.GetByEmailAsync(command.Email);
+        var userData = await _userDataRepository.FindByEmailAsync(command.Email);
 
         if (userData is null)
         {
@@ -29,7 +29,7 @@ public class SaveChangeEmailCommandHandler : ICommandHandler<SaveChangeEmailComm
         }
 
         var notificationHistory = new NotificationHistory(command.NotificationId, EMAIL_CHANGE, userData,
-            command.Email, command.ConfirmationToken);
+            "Change your email", command.ConfirmationToken);
 
         await _notificationHistoryRepository.AddAsync(notificationHistory);
     }

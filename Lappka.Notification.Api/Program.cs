@@ -1,5 +1,8 @@
+using Convey.MessageBrokers.CQRS;
+using Convey.MessageBrokers.RabbitMQ;
 using Lappka.Notification.Api.Controllers;
 using Scheme.Application;
+using Scheme.Application.Events;
 using Scheme.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +21,11 @@ var app = builder.Build();
 
 
 app.MapGrpcService<NotificationGrpcController>();
+
+app.UseRabbitMq()
+    .SubscribeEvent<UserCreatedEvent>()
+    .SubscribeEvent<UserUpdatedEvent>();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

@@ -18,7 +18,7 @@ public class SendResetPasswordCommandHandler : ICommandHandler<SendResetPassword
     }
     public async Task HandleAsync(SendResetPasswordCommand command, CancellationToken cancellationToken = new CancellationToken())
     {
-        var userData = await _userDataRepository.GetByEmailAsync(command.Email);
+        var userData = await _userDataRepository.FindByEmailAsync(command.Email);
 
         if (userData is null)
         {

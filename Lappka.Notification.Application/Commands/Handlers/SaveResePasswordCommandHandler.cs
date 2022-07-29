@@ -21,16 +21,15 @@ public class SaveResetPasswordCommandHandler : ICommandHandler<SaveResetPassword
     public async Task HandleAsync(SaveResetPasswordCommand command,
         CancellationToken cancellationToken = new CancellationToken())
     {
-        var userData = await _userDataRepository.GetByEmailAsync(command.Email);
+        var userData = await _userDataRepository.FindByEmailAsync(command.Email);
 
         if (userData is null)
         {
             throw new UserDataNotFoundException();
         }
-
-
+        
         var notificationHistory = new NotificationHistory(command.NotificationId, PASSWORD_RESET, userData,
-            command.Email, command.ConfirmationToken);
+            "Reset your password", command.ConfirmationToken);
 
         await _notificationHistoryRepository.AddAsync(notificationHistory);
     }

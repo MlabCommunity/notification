@@ -1,8 +1,8 @@
 using Convey.CQRS.Commands;
 using Scheme.Application.Exceptions;
+using Scheme.Core.Consts;
 using Scheme.Core.Entities;
 using Scheme.Core.Repositories;
-using static Scheme.Core.Consts.EventType;
 
 namespace Scheme.Application.Commands.Handlers;
 
@@ -21,7 +21,7 @@ public  class SaveConfirmationEmailCommandHandler : ICommandHandler<SaveConfirma
     public async Task HandleAsync(SaveConfirmationEmailCommand command,
         CancellationToken cancellationToken = new CancellationToken())
     {
-        var userData = await _userDataRepository.GetByEmailAsync(command.Email);
+        var userData = await _userDataRepository.FindByEmailAsync(command.Email);
 
        
         if (userData is null)
@@ -29,8 +29,8 @@ public  class SaveConfirmationEmailCommandHandler : ICommandHandler<SaveConfirma
             throw new UserDataNotFoundException();
         }
         
-        var notificationHistory = new NotificationHistory(command.NotificationId, EMAIL_CONFIRM, userData,
-            command.Email, command.ConfirmationToken);
+        var notificationHistory = new NotificationHistory(command.NotificationId, EventType.EMAIL_CHANGE, userData,
+            "Confirm your email", command.ConfirmationToken);
 
         await _notificationHistoryRepository.AddAsync(notificationHistory);
     }
