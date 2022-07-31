@@ -19,33 +19,27 @@ public sealed class GrpcExceptionHandler : Interceptor
     {
         try
         {
-            return await base.UnaryServerHandler(request, context, continuation);
-        }
-        catch (ProjectGrpcException gex)
-        {
-            _logger.LogError(gex, gex.Message);
-
-            var concreteResponse = Activator.CreateInstance<TResponse>();
-
-            var code = gex.StatusCode;
-            var message = gex.Message;
-            concreteResponse?.GetType().GetProperty(nameof(code))?.SetValue(concreteResponse, code);
-            concreteResponse?.GetType().GetProperty(nameof(message))?.SetValue(concreteResponse, message);
-
-            context.Status = gex.Status;
-            return concreteResponse;
+            return await continuation.Invoke(request, context);
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, ex.Message);
-
-            var concreteResponse = Activator.CreateInstance<TResponse>();
-
-            var message = ex.Message;
-            concreteResponse?.GetType().GetProperty(nameof(message))?.SetValue(concreteResponse, message);
-
-            context.Status = new Status(statusCode: StatusCode.Internal, ex.Message);
-            return concreteResponse;
+            return MapResponse<TRequest, TResponse>(context, ex);
         }
+    }
+
+    private TResponse MapResponse<TRequest, TResponse>(ServerCallContext context, Exception ex)
+    {
+        var concreteResponse = Activator.CreateInstance<TResponse>();
+
+        if (ex is ProjectGrpcException de)
+        {
+            context.Status = de.Status;
+        }
+        else
+        {
+            context.Status = new Status(StatusCode.Internal, "Internal server error");
+        }
+
+        return concreteResponse;
     }
 }

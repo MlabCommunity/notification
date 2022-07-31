@@ -11,3 +11,13 @@ services:
     volumes:
       - ./volumes/postgres:/var/lib/postgresql/14/data
     restart: unless-stopped
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq'
+    environment:
+      - RABBITMQ_DEFAULT_USER=rabbitmq
+      - RABBITMQ_DEFAULT_PASS=rabbitmq
+    ports:
+      - 5432:5672
+      - 15432:15672

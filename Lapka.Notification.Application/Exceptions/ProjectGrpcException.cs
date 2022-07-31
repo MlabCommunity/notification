@@ -4,10 +4,11 @@ namespace Lapka.Notification.Application.Exceptions;
 
 public class ProjectGrpcException : RpcException
 {
-    private Exception _innException;
+    public Exception ProjectInnerException { get; }
 
-    public ProjectGrpcException(Status status, String message, Exception innException = null) : base(status, message)
+    public ProjectGrpcException(Status status, string message, Exception innerException = null) 
+        : base(status, message)
     {
-        _innException = innException;
+        ProjectInnerException = innerException;
     }
 }

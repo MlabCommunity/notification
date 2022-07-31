@@ -1,5 +1,8 @@
+using Convey.MessageBrokers.CQRS;
+using Convey.MessageBrokers.RabbitMQ;
 using Lapka.Notification.Api.gRPC.Controllers;
 using Lapka.Notification.Application;
+using Lapka.Notification.Application.RabbitEvents;
 using Lapka.Notification.Infrastructure;
 using Lapka.Notification.Infrastructure.DataBase;
 using Lapka.Notification.Infrastructure.Exceptions;
@@ -29,6 +32,9 @@ builder.Services.AddEndpointsApiExplorer();
 var app = builder.Build();
 
 app.MapGrpcService<NotificationGrpcController>();
+
+app.UseRabbitMq()
+    .SubscribeEvent<UserUpdatedEvent>();
 
 app.UseHttpsRedirection();
 

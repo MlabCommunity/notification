@@ -1,6 +1,9 @@
 ﻿using Convey;
 using Convey.CQRS.Commands;
+using Convey.CQRS.Events;
 using Convey.CQRS.Queries;
+using Convey.MessageBrokers.CQRS;
+using Convey.MessageBrokers.RabbitMQ;
 using Lapka.Notification.Application.RequestStorage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,7 +20,10 @@ public static class Extensions
             .AddCommandHandlers()
             .AddInMemoryCommandDispatcher()
             .AddQueryHandlers()
-            .AddInMemoryQueryDispatcher();
+            .AddInMemoryQueryDispatcher()
+            .AddEventHandlers()
+            .AddServiceBusEventDispatcher()
+            .AddRabbitMq();
 
         return builder.Build();
     }

@@ -30,9 +30,10 @@ internal class UserDataRepository : IUserDataRepository
         return await _context.UserData.FirstOrDefaultAsync(x => x.Email == email);
     }
 
-    public Task UpdateUserData(UserData userData)
+    public async Task UpdateUserData(UserData userData)
     {
-        throw new NotImplementedException();
+        _context.UserData.Update(userData);
+        await _context.SaveChangesAsync();
     }
 
     public Task DeleteUserData(UserData userData)
