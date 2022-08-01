@@ -1,6 +1,6 @@
 using Convey.CQRS.Commands;
 
-namespace Scheme.Application.Commands;
+namespace Lappka.Notification.Application.Commands;
 
 public record SaveResetPasswordCommand : ICommand
 {

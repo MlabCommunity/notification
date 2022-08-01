@@ -1,7 +1,7 @@
 using Convey.CQRS.Commands;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
-using Scheme.Application.Commands;
+using Lappka.Notification.Application.Commands;
 
 namespace Lappka.Notification.Api.Controllers;
 
@@ -9,10 +9,11 @@ public class NotificationGrpcController : NotificationController.NotificationCon
 {
     private readonly ICommandDispatcher _commandDispatcher;
 
-    public NotificationGrpcController(ICommandDispatcher commandDispatcher )
+    public NotificationGrpcController(ICommandDispatcher commandDispatcher)
     {
         _commandDispatcher = commandDispatcher;
     }
+
     public override async Task<Empty> ConfirmEmail(ConfirmEmailRequest request, ServerCallContext context)
     {
         var notificationId = Guid.NewGuid();
@@ -25,8 +26,7 @@ public class NotificationGrpcController : NotificationController.NotificationCon
         };
 
         await _commandDispatcher.SendAsync(saveCommand);
-        // await _test.HandleAsync(saveCommand);
-
+        
         var sendCommand = new SendConfirmationEmailCommand
         {
             NotificationId = notificationId,

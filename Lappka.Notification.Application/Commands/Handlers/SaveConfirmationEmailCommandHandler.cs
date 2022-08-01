@@ -1,12 +1,12 @@
 using Convey.CQRS.Commands;
-using Scheme.Application.Exceptions;
-using Scheme.Core.Consts;
-using Scheme.Core.Entities;
-using Scheme.Core.Repositories;
+using Lappka.Notification.Application.Exceptions;
+using Lappka.Notification.Core.Consts;
+using Lappka.Notification.Core.Entities;
+using Lappka.Notification.Core.Repositories;
 
-namespace Scheme.Application.Commands.Handlers;
+namespace Lappka.Notification.Application.Commands.Handlers;
 
-public  class SaveConfirmationEmailCommandHandler : ICommandHandler<SaveConfirmationEmailCommand>
+internal sealed class SaveConfirmationEmailCommandHandler : ICommandHandler<SaveConfirmationEmailCommand>
 {
     private readonly IUserDataRepository _userDataRepository;
     private readonly INotificationHistoryRepository _notificationHistoryRepository;
@@ -22,13 +22,12 @@ public  class SaveConfirmationEmailCommandHandler : ICommandHandler<SaveConfirma
         CancellationToken cancellationToken = new CancellationToken())
     {
         var userData = await _userDataRepository.FindByEmailAsync(command.Email);
-
-       
+        
         if (userData is null)
         {
             throw new UserDataNotFoundException();
         }
-        
+
         var notificationHistory = new NotificationHistory(command.NotificationId, EventType.EMAIL_CHANGE, userData,
             "Confirm your email", command.ConfirmationToken);
 

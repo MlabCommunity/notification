@@ -1,10 +1,10 @@
 using Convey.CQRS.Events;
-using Scheme.Application.Exceptions;
-using Scheme.Core.Repositories;
+using Lappka.Notification.Application.Exceptions;
+using Lappka.Notification.Core.Repositories;
 
-namespace Scheme.Application.Events.Handlers;
+namespace Lappka.Notification.Application.Events.Handlers;
 
-public class UserUpdatedEventHandler : IEventHandler<UserUpdatedEvent>
+internal sealed class UserUpdatedEventHandler : IEventHandler<UserUpdatedEvent>
 {
     private readonly IUserDataRepository _userDataRepository;
 

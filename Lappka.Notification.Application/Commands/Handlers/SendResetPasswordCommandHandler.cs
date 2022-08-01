@@ -1,10 +1,10 @@
 using Convey.CQRS.Commands;
-using Scheme.Application.Exceptions;
-using Scheme.Core.Repositories;
+using Lappka.Notification.Application.Exceptions;
+using Lappka.Notification.Core.Repositories;
 
-namespace Scheme.Application.Commands.Handlers;
+namespace Lappka.Notification.Application.Commands.Handlers;
 
-public class SendResetPasswordCommandHandler : ICommandHandler<SendResetPasswordCommand>
+internal sealed class SendResetPasswordCommandHandler : ICommandHandler<SendResetPasswordCommand>
 {
     private readonly IUserDataRepository _userDataRepository;
     private readonly INotificationHistoryRepository _notificationHistoryRepository;

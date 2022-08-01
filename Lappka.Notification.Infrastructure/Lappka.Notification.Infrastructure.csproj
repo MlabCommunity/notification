@@ -18,9 +18,4 @@
       <ProjectReference Include="..\Lappka.Notification.Application\Lappka.Notification.Application.csproj" />
     </ItemGroup>
 
-    
-    <ItemGroup>
-      <Folder Include="Exceptions" />
-    </ItemGroup>
-
 </Project>

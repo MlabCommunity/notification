@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Configuration;
 
-namespace Scheme.Infrastructure.Options;
+namespace Lappka.Notification.Infrastructure.Options;
 
 public static class Extensions
 {

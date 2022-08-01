@@ -1,12 +1,14 @@
 
 
+using System.Net;
 using Grpc.Core;
 
-namespace Scheme.Application.Exceptions;
+namespace Lappka.Notification.Application.Exceptions;
 
 public class NotificationHistoryNotFound : ProjectGrpcException
 {
-    public NotificationHistoryNotFound(StatusCode errorCode = StatusCode.NotFound) : base("Notification history not found", errorCode)
+    public NotificationHistoryNotFound(HttpStatusCode status = HttpStatusCode.NotFound) : base(new Status(StatusCode.NotFound,"Notification history not found"),"Not found")
     {
     }
+
 }

@@ -1,9 +1,9 @@
+using Lappka.Notification.Core.Entities;
+using Lappka.Notification.Core.Repositories;
+using Lappka.Notification.Infrastructure.Database.Contexts;
 using Microsoft.EntityFrameworkCore;
-using Scheme.Core.Entities;
-using Scheme.Core.Repositories;
-using Scheme.Infrastructure.Database.Contexts;
 
-namespace Scheme.Infrastructure.Database.Postgres;
+namespace Lappka.Notification.Infrastructure.Database.Postgres;
 
 internal sealed class PostgresUserDataRepository : IUserDataRepository
 {

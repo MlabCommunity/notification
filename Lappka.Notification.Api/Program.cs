@@ -1,24 +1,24 @@
 using Convey.MessageBrokers.CQRS;
 using Convey.MessageBrokers.RabbitMQ;
 using Lappka.Notification.Api.Controllers;
-using Scheme.Application;
-using Scheme.Application.Events;
-using Scheme.Infrastructure;
+using Lappka.Notification.Application;
+using Lappka.Notification.Application.Events;
+using Lappka.Notification.Infrastructure;
+using Lappka.Notification.Infrastructure.Exceptions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-
+builder.Services.AddMiddleware();
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddGrpc(o=>o.EnableDetailedErrors = true);
+builder.Services.AddGrpc();
 var app = builder.Build();
-
 
 app.MapGrpcService<NotificationGrpcController>();
 

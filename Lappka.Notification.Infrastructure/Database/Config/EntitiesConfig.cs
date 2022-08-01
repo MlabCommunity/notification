@@ -1,8 +1,8 @@
+using Lappka.Notification.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Scheme.Core.Entities;
 
-namespace Scheme.Infrastructure.Database.Config;
+namespace Lappka.Notification.Infrastructure.Database.Config;
 
 internal sealed class EntitiesConfig : IEntityTypeConfiguration<NotificationHistory> ,IEntityTypeConfiguration<UserData>
 {
@@ -15,8 +15,7 @@ internal sealed class EntitiesConfig : IEntityTypeConfiguration<NotificationHist
             .WithMany(n => n.Notifications).OnDelete(DeleteBehavior.SetNull);
         
     }
-
-
+    
     public void Configure(EntityTypeBuilder<UserData> builder)
     {
         builder.ToTable("UsersData");

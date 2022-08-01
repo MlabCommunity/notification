@@ -1,4 +1,4 @@
-namespace Scheme.Core.Consts;
+namespace Lappka.Notification.Core.Consts;
 
 public enum EventType
 {

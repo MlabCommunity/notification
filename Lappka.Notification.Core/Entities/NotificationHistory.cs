@@ -1,6 +1,6 @@
-using Scheme.Core.Consts;
+using Lappka.Notification.Core.Consts;
 
-namespace Scheme.Core.Entities;
+namespace Lappka.Notification.Core.Entities;
 
 public class NotificationHistory
 {

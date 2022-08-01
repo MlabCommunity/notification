@@ -1,6 +1,6 @@
 using Convey.CQRS.Events;
 
-namespace Scheme.Application.Events;
+namespace Lappka.Notification.Application.Events;
 
 public class UserCreatedEvent : IEvent
 {

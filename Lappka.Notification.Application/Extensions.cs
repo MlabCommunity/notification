@@ -6,7 +6,7 @@ using Convey.MessageBrokers.CQRS;
 using Convey.MessageBrokers.RabbitMQ;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Scheme.Application;
+namespace Lappka.Notification.Application;
 
 public static class Extensions
 {

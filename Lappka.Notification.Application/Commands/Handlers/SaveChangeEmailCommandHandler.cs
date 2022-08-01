@@ -1,12 +1,12 @@
 using Convey.CQRS.Commands;
-using Scheme.Application.Exceptions;
-using Scheme.Core.Entities;
-using Scheme.Core.Repositories;
-using static Scheme.Core.Consts.EventType;
+using Lappka.Notification.Application.Exceptions;
+using Lappka.Notification.Core.Entities;
+using Lappka.Notification.Core.Repositories;
+using static Lappka.Notification.Core.Consts.EventType;
 
-namespace Scheme.Application.Commands.Handlers;
+namespace Lappka.Notification.Application.Commands.Handlers;
 
-public class SaveChangeEmailCommandHandler : ICommandHandler<SaveChangeEmailCommand>
+internal sealed class SaveChangeEmailCommandHandler : ICommandHandler<SaveChangeEmailCommand>
 {
     private readonly IUserDataRepository _userDataRepository;
     private readonly INotificationHistoryRepository _notificationHistoryRepository;

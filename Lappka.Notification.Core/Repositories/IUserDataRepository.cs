@@ -1,6 +1,6 @@
-using Scheme.Core.Entities;
+using Lappka.Notification.Core.Entities;
 
-namespace Scheme.Core.Repositories;
+namespace Lappka.Notification.Core.Repositories;
 
 public interface IUserDataRepository
 {

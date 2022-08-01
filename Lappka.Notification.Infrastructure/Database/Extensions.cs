@@ -1,12 +1,12 @@
+using Lappka.Notification.Core.Repositories;
+using Lappka.Notification.Infrastructure.Database.Contexts;
+using Lappka.Notification.Infrastructure.Database.Postgres;
+using Lappka.Notification.Infrastructure.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Scheme.Core.Repositories;
-using Scheme.Infrastructure.Database.Contexts;
-using Scheme.Infrastructure.Database.Postgres;
-using Scheme.Infrastructure.Options;
 
-namespace Scheme.Infrastructure.Database;
+namespace Lappka.Notification.Infrastructure.Database;
 
 public static class Extensions
 {

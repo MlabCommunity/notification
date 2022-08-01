@@ -1,12 +1,11 @@
+using Lappka.Notification.Core.Entities;
 using Microsoft.EntityFrameworkCore;
-using Scheme.Core.Entities;
 
-namespace Scheme.Infrastructure.Database.Contexts;
+namespace Lappka.Notification.Infrastructure.Database.Contexts;
 
 public interface INotificationDbContext
 {
     DbSet<NotificationHistory> NotificationsHistory { get; set; }
     DbSet<UserData> UsersData { get; set; }
-    
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }

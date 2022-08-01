@@ -1,10 +1,11 @@
+using System.Net;
 using Grpc.Core;
 
-namespace Scheme.Application.Exceptions;
+namespace Lappka.Notification.Application.Exceptions;
 
 public class UserDataNotFoundException : ProjectGrpcException
 {
-    public UserDataNotFoundException( StatusCode errorCode = StatusCode.NotFound) : base("User Data not found", errorCode)
+    public UserDataNotFoundException(HttpStatusCode status = HttpStatusCode.NotFound) : base(new Status(StatusCode.NotFound,"User data not found"),"not found")
     {
     }
 }
