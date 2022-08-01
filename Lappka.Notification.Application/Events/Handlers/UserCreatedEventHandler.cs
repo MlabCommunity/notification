@@ -6,15 +6,14 @@ namespace Lappka.Notification.Application.Events.Handlers;
 
 internal sealed class UserCreatedEventHandler : IEventHandler<UserCreatedEvent>
 {
-    
     private readonly IUserDataRepository _userDataRepository;
-    
+
     public UserCreatedEventHandler(IUserDataRepository userDataRepository)
     {
         _userDataRepository = userDataRepository;
     }
-    
-    
+
+
     public async Task HandleAsync(UserCreatedEvent @event,
         CancellationToken cancellationToken = new CancellationToken())
     {
