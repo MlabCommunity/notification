@@ -19,5 +19,5 @@ services:
       - RABBITMQ_DEFAULT_USER=rabbitmq
       - RABBITMQ_DEFAULT_PASS=rabbitmq
     ports:
-      - 5432:5672
-      - 15432:15672
+      - 5435:5672
+      - 15435:15672
