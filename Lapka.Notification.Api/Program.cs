@@ -34,7 +34,8 @@ var app = builder.Build();
 app.MapGrpcService<NotificationGrpcController>();
 
 app.UseRabbitMq()
-    .SubscribeEvent<UserUpdatedEvent>();
+    .SubscribeEvent<UserUpdatedEvent>()
+    .SubscribeEvent<UserDeletedEvent>();
 
 app.UseHttpsRedirection();
 

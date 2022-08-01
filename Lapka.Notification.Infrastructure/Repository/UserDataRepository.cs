@@ -36,8 +36,9 @@ internal class UserDataRepository : IUserDataRepository
         await _context.SaveChangesAsync();
     }
 
-    public Task DeleteUserData(UserData userData)
+    public async Task DeleteUserData(UserData userData)
     {
-        throw new NotImplementedException();
+        _context.UserData.Remove(userData);
+        await _context.SaveChangesAsync();
     }
 }
