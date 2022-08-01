@@ -1,7 +1,9 @@
 ﻿using Convey.CQRS.Events;
+using Convey.MessageBrokers;
 
 namespace Lapka.Notification.Application.RabbitEvents;
 
+[Message("identity")]
 public class UserUpdatedEvent : IEvent
 {
     public Guid UserId { get; }
