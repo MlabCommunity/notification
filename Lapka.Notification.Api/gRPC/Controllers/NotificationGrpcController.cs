@@ -31,7 +31,7 @@ public class NotificationGrpcController : NotificationService.NotificationServic
     {
         var notificationId = Guid.NewGuid();
 
-        var saveDataCommand = new SaveEmailData_ResetEmailCommand(request.Email, request.Token, notificationId);
+        var saveDataCommand = new SaveEmailData_ResetEmailCommand(request.Email, request.Token, request.UserId, notificationId);
         await _commandDispatcher.SendAsync(saveDataCommand);
 
         var sendEmailCommand = new SendEmailToResetEmailCommand(request.Email, request.Token, notificationId);

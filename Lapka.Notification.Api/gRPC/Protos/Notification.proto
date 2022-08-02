@@ -21,6 +21,7 @@ message ResetEmailRequest
 {
 	string email = 1;
 	string token = 2;
+	string userId = 3;
 }
 
 message ConfirmEmailRequest

@@ -20,12 +20,12 @@ public class SaveEmailData_ResetEmailCommandHandler : ICommandHandler<SaveEmailD
 
     public async Task HandleAsync(SaveEmailData_ResetEmailCommand command, CancellationToken cancellationToken = new CancellationToken())
     {
-        if (command.Email is null || command.Token is null)
+        if (command.Email is null || command.Token is null || !Guid.TryParse(command.userId, out var userId))
         {
             throw new InvalidRequestDataException();
         }
 
-        var user = await _userDataRepository.GetUserDataByEmail(command.Email);
+        var user = await _userDataRepository.GetUserDataById(userId);
         if (user is null)
         {
             throw new UserNotFoundException();
