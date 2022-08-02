@@ -7,7 +7,7 @@ namespace Lappka.Notification.Application.Exceptions;
 
 public class NotificationHistoryNotFound : ProjectGrpcException
 {
-    public NotificationHistoryNotFound(HttpStatusCode status = HttpStatusCode.NotFound) : base(new Status(StatusCode.NotFound,"Notification history not found"),"Not found")
+    public NotificationHistoryNotFound() : base(new Status(StatusCode.NotFound,"Notification history not found"),"Not found")
     {
     }
 

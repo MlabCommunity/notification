@@ -16,15 +16,6 @@ internal sealed class ExceptionMiddleware : IMiddleware
         {
             await next(context);
         }
-        catch (ProjectGrpcException ex) when (ex.StatusCode == StatusCode.NotFound)
-        {
-            context.Response.StatusCode = (int)HttpStatusCode.NotFound;
-            context.Response.Headers.Add("content-type", "application/json");
-
-            var json = JsonSerializer.Serialize(
-                new {HttpStatusCode.NotFound, ex.Status.Detail });
-            await context.Response.WriteAsync(json);
-        }
         catch (ProjectGrpcException ex)
         {
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
