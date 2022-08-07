@@ -1,9 +1,7 @@
 using System.Net;
 using System.Text.Json;
-using Grpc.Core;
 using Lappka.Notification.Application.Exceptions;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
 
 namespace Lappka.Notification.Infrastructure.Exceptions;
 
