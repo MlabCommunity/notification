@@ -9,10 +9,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Lappka.Infrastructure.Database.Migrations
+namespace Lappka.Notification.Infrastructure.Database.Migrations
 {
     [DbContext(typeof(NotificationDbContext))]
-    [Migration("20220729100428_Init")]
+    [Migration("20220808103945_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,14 +24,31 @@ namespace Lappka.Infrastructure.Database.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Scheme.Core.Entities.NotificationHistory", b =>
+            modelBuilder.Entity("Lappka.Notification.Core.Entities.NotificationHistory", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<string>("Body")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int>("NotificationType")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
+
+                    b.Property<bool>("isSent")
+                        .HasColumnType("boolean");
 
                     b.HasKey("Id");
 
@@ -40,7 +57,7 @@ namespace Lappka.Infrastructure.Database.Migrations
                     b.ToTable("NotificationsHistory", (string)null);
                 });
 
-            modelBuilder.Entity("Scheme.Core.Entities.UserData", b =>
+            modelBuilder.Entity("Lappka.Notification.Core.Entities.UserData", b =>
                 {
                     b.Property<Guid>("UserId")
                         .ValueGeneratedOnAdd()
@@ -67,9 +84,9 @@ namespace Lappka.Infrastructure.Database.Migrations
                     b.ToTable("UsersData", (string)null);
                 });
 
-            modelBuilder.Entity("Scheme.Core.Entities.NotificationHistory", b =>
+            modelBuilder.Entity("Lappka.Notification.Core.Entities.NotificationHistory", b =>
                 {
-                    b.HasOne("Scheme.Core.Entities.UserData", "User")
+                    b.HasOne("Lappka.Notification.Core.Entities.UserData", "User")
                         .WithMany("Notifications")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.SetNull)
@@ -78,7 +95,7 @@ namespace Lappka.Infrastructure.Database.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Scheme.Core.Entities.UserData", b =>
+            modelBuilder.Entity("Lappka.Notification.Core.Entities.UserData", b =>
                 {
                     b.Navigation("Notifications");
                 });

@@ -8,7 +8,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Lappka.Infrastructure.Database.Migrations
+namespace Lappka.Notification.Infrastructure.Database.Migrations
 {
     [DbContext(typeof(NotificationDbContext))]
     partial class NotificationDbContextModelSnapshot : ModelSnapshot
@@ -22,7 +22,7 @@ namespace Lappka.Infrastructure.Database.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Scheme.Core.Entities.NotificationHistory", b =>
+            modelBuilder.Entity("Lappka.Notification.Core.Entities.NotificationHistory", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -35,7 +35,7 @@ namespace Lappka.Infrastructure.Database.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<int>("EventType")
+                    b.Property<int>("NotificationType")
                         .HasColumnType("integer");
 
                     b.Property<string>("Subject")
@@ -55,7 +55,7 @@ namespace Lappka.Infrastructure.Database.Migrations
                     b.ToTable("NotificationsHistory", (string)null);
                 });
 
-            modelBuilder.Entity("Scheme.Core.Entities.UserData", b =>
+            modelBuilder.Entity("Lappka.Notification.Core.Entities.UserData", b =>
                 {
                     b.Property<Guid>("UserId")
                         .ValueGeneratedOnAdd()
@@ -82,9 +82,9 @@ namespace Lappka.Infrastructure.Database.Migrations
                     b.ToTable("UsersData", (string)null);
                 });
 
-            modelBuilder.Entity("Scheme.Core.Entities.NotificationHistory", b =>
+            modelBuilder.Entity("Lappka.Notification.Core.Entities.NotificationHistory", b =>
                 {
-                    b.HasOne("Scheme.Core.Entities.UserData", "User")
+                    b.HasOne("Lappka.Notification.Core.Entities.UserData", "User")
                         .WithMany("Notifications")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.SetNull)
@@ -93,7 +93,7 @@ namespace Lappka.Infrastructure.Database.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Scheme.Core.Entities.UserData", b =>
+            modelBuilder.Entity("Lappka.Notification.Core.Entities.UserData", b =>
                 {
                     b.Navigation("Notifications");
                 });
