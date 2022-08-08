@@ -1,5 +1,7 @@
-﻿using Lapka.Notification.Application.Interfaces;
+﻿using System.Security.Cryptography.X509Certificates;
+using Lapka.Notification.Application.Interfaces;
 using Lapka.Notification.Infrastructure.DataBase;
+using Microsoft.EntityFrameworkCore;
 
 namespace Lapka.Notification.Infrastructure.Repository;
 
@@ -20,10 +22,10 @@ internal class NotificationHistoryRepository : INotificationHistoryRepository
 
     public async Task MarkAsSend(Guid id)
     {
-        var notification = await _context.NotificationHistory.FindAsync(id);
+        var notification = await _context.NotificationHistory.FirstOrDefaultAsync(x => x.Id == id);
         if (notification is not null)
         {
-            notification.SetIsSend(true);
+            notification.SetIsSend();
             await _context.SaveChangesAsync();
         }
     }

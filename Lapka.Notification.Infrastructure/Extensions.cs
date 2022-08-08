@@ -3,6 +3,7 @@ using Lapka.Notification.Infrastructure.DataBase;
 using Lapka.Notification.Infrastructure.Exceptions;
 using Lapka.Notification.Infrastructure.Repository;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -24,6 +25,10 @@ public static class Extensions
         services.AddScoped<ProjectExceptionMiddleware>();
         services.AddScoped<INotificationHistoryRepository, NotificationHistoryRepository>();
         services.AddScoped<IUserDataRepository, UserDataRepository>();
+
+        var connectionString = configuration.GetConnectionString("postgres");
+        services.AddDbContext<DataContext>(x => x.UseNpgsql(connectionString));
+        AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
         return services;
     }

@@ -22,7 +22,7 @@ internal class UserDataRepository : IUserDataRepository
 
     public async Task<UserData> GetUserDataById(Guid id)
     {
-        return await _context.UserData.FindAsync(id);
+        return await _context.UserData.FirstOrDefaultAsync(x => x.Id == id);
     }
 
     public async Task<UserData> GetUserDataByEmail(string email)

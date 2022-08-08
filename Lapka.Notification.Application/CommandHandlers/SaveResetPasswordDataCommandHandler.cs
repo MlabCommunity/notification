@@ -7,20 +7,20 @@ using Lapka.Notification.Core.Domain.Entities;
 
 namespace Lapka.Notification.Application.CommandHandlers;
 
-public class SaveEmailData_ResetPasswordCommandHandler : ICommandHandler<SaveEmailData_ResetPasswordCommand>
+public class SaveResetPasswordDataCommandHandler : ICommandHandler<SaveResetPasswordDataCommand>
 {
     private readonly INotificationHistoryRepository _notificationHistoryRepository;
     private readonly IUserDataRepository _userDataRepository;
 
-    public SaveEmailData_ResetPasswordCommandHandler(INotificationHistoryRepository notificationHistoryRepository, IUserDataRepository userDataRepository)
+    public SaveResetPasswordDataCommandHandler(INotificationHistoryRepository notificationHistoryRepository, IUserDataRepository userDataRepository)
     {
         _notificationHistoryRepository = notificationHistoryRepository;
         _userDataRepository = userDataRepository;
     }
 
-    public async Task HandleAsync(SaveEmailData_ResetPasswordCommand command, CancellationToken cancellationToken = new CancellationToken())
+    public async Task HandleAsync(SaveResetPasswordDataCommand command, CancellationToken cancellationToken = new CancellationToken())
     {
-        if (command.Email is "" || command.Token is "")
+        if (string.IsNullOrWhiteSpace(command.Email) || string.IsNullOrWhiteSpace(command.Token))
         {
             throw new InvalidRequestDataException();
         }

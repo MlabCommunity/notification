@@ -2,7 +2,7 @@
 
 public enum NotificationType
 {
-    Email_ConfirmEmail,
-    Email_ResetEmail,
+    Email_ConfirmEmailAddress,
+    Email_ResetEmailAddress,
     Email_ResetPassword
 }

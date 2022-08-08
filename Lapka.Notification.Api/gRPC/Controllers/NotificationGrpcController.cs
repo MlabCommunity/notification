@@ -18,10 +18,10 @@ public class NotificationGrpcController : NotificationService.NotificationServic
     {
         var notificationId = Guid.NewGuid();
 
-        var saveDataCommand = new SaveEmailData_ResetPasswordCommand(request.Email, request.Token, notificationId);
+        var saveDataCommand = new SaveResetPasswordDataCommand(request.Email, request.Token, notificationId);
         await _commandDispatcher.SendAsync(saveDataCommand);
 
-        var sendEmailCommand = new SendEmailToResetPasswordCommand(request.Email, request.Token, notificationId);
+        var sendEmailCommand = new SendResetPasswordEmailCommand(request.Email, request.Token, notificationId);
         await _commandDispatcher.SendAsync(sendEmailCommand);
 
         return new();
@@ -31,10 +31,10 @@ public class NotificationGrpcController : NotificationService.NotificationServic
     {
         var notificationId = Guid.NewGuid();
 
-        var saveDataCommand = new SaveEmailData_ResetEmailCommand(request.Email, request.Token, request.UserId, notificationId);
+        var saveDataCommand = new SaveResetEmailAddressDataCommand(request.Email, request.Token, request.UserId, notificationId);
         await _commandDispatcher.SendAsync(saveDataCommand);
 
-        var sendEmailCommand = new SendEmailToResetEmailCommand(request.Email, request.Token, notificationId);
+        var sendEmailCommand = new SendResetEmailAddressEmailCommand(request.Email, request.Token, notificationId);
         await _commandDispatcher.SendAsync(sendEmailCommand);
 
         return new();
@@ -44,11 +44,11 @@ public class NotificationGrpcController : NotificationService.NotificationServic
     {
         var notificationId = Guid.NewGuid();
 
-        var saveDataCommand = new SaveEmailAndUserData_ConfirmEmailCommand(request.Email, request.Token, notificationId,
-            request.Username, request.Firstname, request.Lastname, Guid.Parse((ReadOnlySpan<char>)request.Userid));
+        var saveDataCommand = new SaveConfirmEmailAddressDataCommand(request.Email, request.Token, notificationId,
+            request.Username, request.Firstname, request.Lastname, request.Userid);
         await _commandDispatcher.SendAsync(saveDataCommand);
 
-        var sendEmailCommand = new SendEmailToConfirmEmailCommand(request.Email, request.Token, notificationId);
+        var sendEmailCommand = new SendConfirmEmailAddressEmailCommand(request.Email, request.Token, notificationId);
         await _commandDispatcher.SendAsync(sendEmailCommand);
 
         return new();

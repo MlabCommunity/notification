@@ -4,18 +4,18 @@ using Lapka.Notification.Application.Interfaces;
 
 namespace Lapka.Notification.Application.CommandHandlers;
 
-public class SendEmailToResetEmailCommandHandler : ICommandHandler<SendEmailToResetEmailCommand>
+public class SendResetPasswordEmailCommandHandler : ICommandHandler<SendResetPasswordEmailCommand>
 {
     private readonly INotificationHistoryRepository _notificationHistoryRepository;
 
-    public SendEmailToResetEmailCommandHandler(INotificationHistoryRepository notificationHistoryRepository)
+    public SendResetPasswordEmailCommandHandler(INotificationHistoryRepository notificationHistoryRepository)
     {
         _notificationHistoryRepository = notificationHistoryRepository;
     }
 
-    public async Task HandleAsync(SendEmailToResetEmailCommand command, CancellationToken cancellationToken = new CancellationToken())
+    public async Task HandleAsync(SendResetPasswordEmailCommand command, CancellationToken cancellationToken = new CancellationToken())
     {
-        Console.WriteLine($"Reset maila {command.Email}, tokenem: {command.Token}");
+        Console.WriteLine($"Reset hasła dla emaila {command.Email}, tokenem: {command.Token}");
 
         await _notificationHistoryRepository.MarkAsSend(command.Id);
     }

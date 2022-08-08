@@ -19,10 +19,6 @@ builder.Services.AddGrpc(c => c.Interceptors.Add<GrpcExceptionHandler>());
 builder.Services.Configure<DataProtectionTokenProviderOptions>(opt =>
     opt.TokenLifespan = TimeSpan.FromHours(1));
 
-var connectionString = builder.Configuration.GetConnectionString("postgres");
-builder.Services.AddDbContext<DataContext>(x => x.UseNpgsql(connectionString));
-AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
-
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication(builder.Configuration);
 

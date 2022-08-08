@@ -1,4 +1,5 @@
 ﻿using Convey.CQRS.Events;
+using Lapka.Notification.Application.Exceptions.RabbitException;
 using Lapka.Notification.Application.Interfaces;
 using Lapka.Notification.Application.RabbitEvents;
 
@@ -19,20 +20,10 @@ public class UserUpdatedEventHandler : IEventHandler<UserUpdatedEvent>
 
         if (user is null)
         {
-            throw new Exception("User doesn't exist");
+            throw new UserNotFoundException(@event.UserId);
         }
 
-        if(!string.IsNullOrWhiteSpace(@event.Username))
-            user.Username = @event.Username;
-
-        if (!string.IsNullOrWhiteSpace(@event.FirstName))
-            user.FirstName = @event.FirstName;
-
-        if (!string.IsNullOrWhiteSpace(@event.LastName))
-            user.LastName = @event.LastName;
-
-        if (!string.IsNullOrWhiteSpace(@event.Email))
-            user.Email = @event.Email;
+        user.Update(@event.Username, @event.FirstName, @event.LastName, @event.Email);
 
         await _userDataRepository.UpdateUserData(user);
     }

@@ -7,41 +7,35 @@ using Lapka.Notification.Core.Domain.Entities;
 
 namespace Lapka.Notification.Application.CommandHandlers;
 
-public class SaveEmailAndUserData_ConfirmEmailCommandHandler : ICommandHandler<SaveEmailAndUserData_ConfirmEmailCommand>
+public class SaveResetEmailAddressDataCommandHandler : ICommandHandler<SaveResetEmailAddressDataCommand>
 {
     private readonly IUserDataRepository _userDataRepository;
     private readonly INotificationHistoryRepository _notificationHistoryRepository;
 
-    public SaveEmailAndUserData_ConfirmEmailCommandHandler(IUserDataRepository userDataRepository, INotificationHistoryRepository notificationHistoryRepository)
+    public SaveResetEmailAddressDataCommandHandler(IUserDataRepository userDataRepository, INotificationHistoryRepository notificationHistoryRepository)
     {
         _userDataRepository = userDataRepository;
         _notificationHistoryRepository = notificationHistoryRepository;
     }
 
-    public async Task HandleAsync(SaveEmailAndUserData_ConfirmEmailCommand command, CancellationToken cancellationToken = new CancellationToken())
+    public async Task HandleAsync(SaveResetEmailAddressDataCommand command, CancellationToken cancellationToken = new CancellationToken())
     {
-        if (command.Email is null || command.FirstName is null || command.LastName is null || command.Username is null
-            || command.Token is null || command.UserId == Guid.Empty)
+        if (string.IsNullOrWhiteSpace(command.Email) || string.IsNullOrWhiteSpace(command.Token) || !Guid.TryParse(command.userId, out var userId))
         {
             throw new InvalidRequestDataException();
         }
 
-        var user = new UserData()
+        var user = await _userDataRepository.GetUserDataById(userId);
+        if (user is null)
         {
-            Id = command.UserId,
-            Email = command.Email,
-            FirstName = command.FirstName,
-            LastName = command.LastName,
-            Username = command.Username
-        };
-
-        await _userDataRepository.CreateUserData(user);
+            throw new UserNotFoundException();
+        }
 
         var notification = new NotificationHistory()
         {
             Id = command.Id,
-            Type = NotificationType.Email_ConfirmEmail,
-            UserEmail = user.Email,
+            Type = NotificationType.Email_ResetEmailAddress,
+            UserEmail = command.Email,
             Subject = user.FirstName + " " + user.LastName + " " + user.Username,
             Body = command.Token,
             UserId = user.Id
