@@ -2,7 +2,7 @@ using Convey.CQRS.Commands;
 using Lappka.Notification.Application.Exceptions;
 using Lappka.Notification.Core.Entities;
 using Lappka.Notification.Core.Repositories;
-using static Lappka.Notification.Core.Consts.EventType;
+using static Lappka.Notification.Core.Consts.NotificationType;
 
 namespace Lappka.Notification.Application.Commands.Handlers;
 

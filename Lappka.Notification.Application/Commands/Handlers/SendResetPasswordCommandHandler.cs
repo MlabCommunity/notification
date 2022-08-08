@@ -34,7 +34,7 @@ internal sealed class SendResetPasswordCommandHandler : ICommandHandler<SendRese
 
         Console.Write("Email has been sent");  //TODO: Send email
 
-        notificationHistory.SendNotification(); 
+        notificationHistory.NotificationSent(); 
 
         await _notificationHistoryRepository.UpdateAsync(notificationHistory);
     }

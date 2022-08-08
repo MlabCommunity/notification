@@ -22,19 +22,3 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
-    volumes:
-      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
-      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
-        
-  notification:
-    container_name: 'notification_container'
-    build:
-      context: ../
-      dockerfile: Lappka.Notification/Lappka.Notification.Api/Dockerfile
-    restart: unless-stopped
-    ports:
-      - "5010:80"
-    depends_on:
-      - rabbitmq
-  
-        

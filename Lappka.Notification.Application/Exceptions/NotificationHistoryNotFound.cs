@@ -1,6 +1,5 @@
 
 
-using System.Net;
 using Grpc.Core;
 
 namespace Lappka.Notification.Application.Exceptions;

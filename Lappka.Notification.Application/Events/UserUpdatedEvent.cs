@@ -1,7 +1,9 @@
 using Convey.CQRS.Events;
+using Convey.MessageBrokers;
 
 namespace Lappka.Notification.Application.Events;
 
+[Message("identity")]
 public class UserUpdatedEvent : IEvent
 {
     public Guid UserId { get; }

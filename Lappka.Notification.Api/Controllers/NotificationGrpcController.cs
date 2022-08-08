@@ -18,25 +18,15 @@ public class NotificationGrpcController : NotificationController.NotificationCon
     {
         var notificationId = Guid.NewGuid();
 
-        var saveCommand = new SaveConfirmationEmailCommand
-        {
-            NotificationId = notificationId,
-            Email = request.Email,
-            ConfirmationToken = request.Token
-        };
-
+        var saveCommand = new SaveConfirmationEmailCommand(notificationId, request.Email, request.ConfirmationToken);
+            
         await _commandDispatcher.SendAsync(saveCommand);
-        
-        var sendCommand = new SendConfirmationEmailCommand
-        {
-            NotificationId = notificationId,
-            Email = request.Email,
-            ConfirmationToken = request.Token
-        };
 
+        var sendCommand = new SendConfirmationEmailCommand(notificationId, request.Email, request.ConfirmationToken);
+            
         await _commandDispatcher.SendAsync(sendCommand);
 
-        Console.WriteLine($"ConfirmEmail called,Email {request.Email}, token {request.Token}");
+        Console.WriteLine($"ConfirmEmail called,Email {request.Email}, token {request.ConfirmationToken}");
         return new();
     }
 
@@ -44,24 +34,14 @@ public class NotificationGrpcController : NotificationController.NotificationCon
     {
         var notificationId = Guid.NewGuid();
 
-        var saveCommand = new SaveChangeEmailCommand()
-        {
-            NotificationId = notificationId,
-            Email = request.Email,
-            ConfirmationToken = request.Token
-        };
-
+        var saveCommand = new SaveChangeEmailCommand(notificationId, request.Email, request.ConfirmationToken);
+        
         await _commandDispatcher.SendAsync(saveCommand);
 
-        var sendCommand = new SendChangeEmailCommand
-        {
-            NotificationId = notificationId,
-            Email = request.Email,
-            ConfirmationToken = request.Token
-        };
-
+        var sendCommand = new SendChangeEmailCommand(notificationId, request.Email, request.ConfirmationToken);
+        
         await _commandDispatcher.SendAsync(sendCommand);
-        Console.WriteLine($"ResetEmail called,Email {request.Email}, token {request.Token}");
+        Console.WriteLine($"ChangeEmail called,Email {request.Email}, token {request.ConfirmationToken}");
         return new();
     }
 
@@ -69,24 +49,14 @@ public class NotificationGrpcController : NotificationController.NotificationCon
     {
         var notificationId = Guid.NewGuid();
 
-        var saveCommand = new SaveResetPasswordCommand
-        {
-            NotificationId = notificationId,
-            Email = request.Email,
-            ConfirmationToken = request.Token
-        };
+        var saveCommand = new SaveResetPasswordCommand(notificationId, request.Email, request.ConfirmationToken);
 
         await _commandDispatcher.SendAsync(saveCommand);
 
-        var sendCommand = new SendResetPasswordCommand
-        {
-            NotificationId = notificationId,
-            Email = request.Email,
-            ConfirmationToken = request.Token
-        };
-
+        var sendCommand = new SendResetPasswordCommand(notificationId, request.Email, request.ConfirmationToken);
+        
         await _commandDispatcher.SendAsync(sendCommand);
-        Console.WriteLine($"RestartPassword called,Email {request.Email}, token {request.Token}");
+        Console.WriteLine($"RestartPassword called,Email {request.Email}, token {request.ConfirmationToken}");
         return new();
     }
 }

@@ -5,7 +5,7 @@ namespace Lappka.Notification.Core.Entities;
 public class NotificationHistory
 {
     public Guid Id { get; private set; }
-    public EventType EventType { get; private set; }
+    public NotificationType NotificationType { get; private set; }
     public UserData User { get; private set; }
     public string Subject { get; private set; }
     public string Body { get; private set; }
@@ -16,10 +16,10 @@ public class NotificationHistory
     {
     }
 
-    public NotificationHistory(Guid id, EventType eventType, UserData user, string subject, string body)
+    public NotificationHistory(Guid id, NotificationType notificationType, UserData user, string subject, string body)
     {
         Id = id;
-        EventType = eventType;
+        NotificationType = notificationType;
         User = user;
         Subject = subject;
         Body = body;
@@ -27,7 +27,7 @@ public class NotificationHistory
         CreatedAt = DateTime.UtcNow;
     }
 
-    public void SendNotification()
+    public void NotificationSent()
     {
         isSent = true;
     }

@@ -28,7 +28,7 @@ internal sealed class SaveConfirmationEmailCommandHandler : ICommandHandler<Save
             throw new UserDataNotFoundException();
         }
 
-        var notificationHistory = new NotificationHistory(command.NotificationId, EventType.EMAIL_CHANGE, userData,
+        var notificationHistory = new NotificationHistory(command.NotificationId, NotificationType.EMAIL_CHANGE, userData,
             "Confirm your email", command.ConfirmationToken);
 
         await _notificationHistoryRepository.AddAsync(notificationHistory);
