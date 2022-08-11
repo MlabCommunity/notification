@@ -4,10 +4,8 @@ using Lapka.Notification.Api.gRPC.Controllers;
 using Lapka.Notification.Application;
 using Lapka.Notification.Application.RabbitEvents;
 using Lapka.Notification.Infrastructure;
-using Lapka.Notification.Infrastructure.DataBase;
 using Lapka.Notification.Infrastructure.Exceptions;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 

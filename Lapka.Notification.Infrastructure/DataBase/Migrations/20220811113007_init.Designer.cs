@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Lapka.Notification.Infrastructure.DataBase.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220727220346_initial")]
-    partial class initial
+    [Migration("20220811113007_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -60,8 +60,6 @@ namespace Lapka.Notification.Infrastructure.DataBase.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("NotificationHistory", "notification");
                 });
 
@@ -93,22 +91,6 @@ namespace Lapka.Notification.Infrastructure.DataBase.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserData", "notification");
-                });
-
-            modelBuilder.Entity("Lapka.Notification.Core.Domain.Entities.NotificationHistory", b =>
-                {
-                    b.HasOne("Lapka.Notification.Core.Domain.Entities.UserData", "User")
-                        .WithMany("Notifications")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Lapka.Notification.Core.Domain.Entities.UserData", b =>
-                {
-                    b.Navigation("Notifications");
                 });
 #pragma warning restore 612, 618
         }

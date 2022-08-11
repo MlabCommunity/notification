@@ -7,7 +7,6 @@ public class UserData
     public string Email { get; private set; }
     public string FirstName { get; private set; }
     public string LastName { get; private set; }
-    public List<NotificationHistory> Notifications { get; set; }
 
     public UserData(Guid id, string username, string firstname, string lastname, string email)
     {

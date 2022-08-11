@@ -10,7 +10,6 @@ public class NotificationHistory : ICreatedAt
     public DateTime CreatedAt { get; set; }
     public bool IsSend { get; private set; }
     public Guid UserId { get; init; }
-    public UserData User { get; init; }
 
     public void SetIsSend()
     {

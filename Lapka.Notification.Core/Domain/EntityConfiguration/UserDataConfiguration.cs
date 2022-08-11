@@ -24,10 +24,5 @@ public class UserDataConfiguration : IEntityTypeConfiguration<UserData>
         user.Property(x => x.LastName)
             .IsRequired()
             .HasMaxLength(32);
-
-        user.HasMany(x => x.Notifications)
-            .WithOne(x => x.User)
-            .HasForeignKey(x => x.UserId)
-            .OnDelete(DeleteBehavior.NoAction);
     }
 }

@@ -58,8 +58,6 @@ namespace Lapka.Notification.Infrastructure.DataBase.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("NotificationHistory", "notification");
                 });
 
@@ -91,22 +89,6 @@ namespace Lapka.Notification.Infrastructure.DataBase.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserData", "notification");
-                });
-
-            modelBuilder.Entity("Lapka.Notification.Core.Domain.Entities.NotificationHistory", b =>
-                {
-                    b.HasOne("Lapka.Notification.Core.Domain.Entities.UserData", "User")
-                        .WithMany("Notifications")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Lapka.Notification.Core.Domain.Entities.UserData", b =>
-                {
-                    b.Navigation("Notifications");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using Lapka.Notification.Application.Interfaces;
+﻿using Lapka.Notification.Application.Interfaces;
 using Lapka.Notification.Infrastructure.DataBase;
 using Microsoft.EntityFrameworkCore;
 
