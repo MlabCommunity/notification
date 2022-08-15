@@ -23,7 +23,7 @@ public class UserUpdatedEventHandler : IEventHandler<UserUpdatedEvent>
             throw new UserNotFoundException(@event.UserId);
         }
 
-        user.Update(@event.Username, @event.FirstName, @event.LastName, @event.Email);
+        user.Update(@event.FirstName, @event.LastName, @event.Email);
 
         await _userDataRepository.UpdateUserData(user);
     }

@@ -3,7 +3,7 @@
 public class UserData
 {
     public Guid Id { get; init; }
-    public string Username { get; private set; }
+    public string Username { get; init; }
     public string Email { get; private set; }
     public string FirstName { get; private set; }
     public string LastName { get; private set; }
@@ -22,11 +22,8 @@ public class UserData
         
     }
 
-    public void Update(string username, string firstname, string lastname, string email)
+    public void Update(string firstname, string lastname, string email)
     {
-        if (!string.IsNullOrWhiteSpace(username))
-            Username = username;
-
         if (!string.IsNullOrWhiteSpace(firstname))
             FirstName = firstname;
 

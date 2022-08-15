@@ -35,7 +35,7 @@ public class SaveConfirmEmailAddressDataCommandHandler : ICommandHandler<SaveCon
             Id = command.Id,
             Type = NotificationType.Email_ConfirmEmailAddress,
             UserEmail = user.Email,
-            Subject = user.FirstName + " " + user.LastName + " " + user.Username,
+            Subject = user.FirstName + " " + user.LastName,
             Body = command.Token,
             UserId = user.Id
         };
