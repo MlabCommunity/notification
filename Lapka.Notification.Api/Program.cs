@@ -31,13 +31,14 @@ app.UseRabbitMq()
     .SubscribeEvent<UserUpdatedEvent>()
     .SubscribeEvent<UserDeletedEvent>();
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseInfrastucture();
 
+app.MapGet("/", ctx => ctx.Response.WriteAsync($"Lapka.Notification API {DateTime.Now}"));
 app.MapControllers();
 
 app.Run();
