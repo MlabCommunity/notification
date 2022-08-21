@@ -31,8 +31,6 @@ app.UseRabbitMq()
     .SubscribeEvent<UserUpdatedEvent>()
     .SubscribeEvent<UserDeletedEvent>();
 
-//app.UseHttpsRedirection();
-
 app.UseAuthentication();
 app.UseAuthorization();
 

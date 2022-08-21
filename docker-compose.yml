@@ -12,24 +12,15 @@ services:
       - ./volumes/postgres:/var/lib/postgresql/14/data
     restart: unless-stopped
 
-  rabbitmq:
-    image: rabbitmq:3-management-alpine
-    container_name: lapka_rabbitmq
-    environment:
-      - RABBITMQ_DEFAULT_USER=rabbitmq
-      - RABBITMQ_DEFAULT_PASS=rabbitmq
-    ports:
-      - 5435:5672
-      - 15435:15672
-
   notification-service:
     container_name: lapka_notification
     build: .
     image: lapka_notification_service
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
     ports:
-      - "5030:80"
+      - "5030:5030"
       - "5031:5031"
     depends_on:
       - postgres
-      - rabbitmq
     restart: unless-stopped
