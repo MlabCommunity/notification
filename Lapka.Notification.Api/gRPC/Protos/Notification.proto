@@ -1,0 +1,35 @@
+﻿syntax = "proto3";
+option csharp_namespace = "Lapka.Notification.Api";
+
+package Notification.Protos;
+import "google/protobuf/empty.proto";
+
+service NotificationService
+{
+	rpc ResetPassword(ResetPasswordRequest) returns (google.protobuf.Empty);
+	rpc ResetEmail(ResetEmailRequest) returns (google.protobuf.Empty);
+	rpc ConfirmEmail(ConfirmEmailRequest) returns (google.protobuf.Empty);
+}
+
+message ResetPasswordRequest
+{
+	string email = 1;
+	string token = 2;
+}
+
+message ResetEmailRequest
+{
+	string email = 1;
+	string token = 2;
+	string userId = 3;
+}
+
+message ConfirmEmailRequest
+{
+	string email = 1;
+	string token = 2;
+	string username = 3;
+	string firstname = 4;
+	string lastname = 5;
+	string userid = 6;
+}
