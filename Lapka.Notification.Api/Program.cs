@@ -2,7 +2,7 @@ using Convey.MessageBrokers.CQRS;
 using Convey.MessageBrokers.RabbitMQ;
 using Lapka.Notification.Api.gRPC.Controllers;
 using Lapka.Notification.Application;
-using Lapka.Notification.Application.RabbitEvents;
+using Lapka.Notification.Application.IncommingEvents;
 using Lapka.Notification.Infrastructure;
 using Lapka.Notification.Infrastructure.Exceptions;
 using Microsoft.AspNetCore.Identity;
