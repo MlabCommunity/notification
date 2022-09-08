@@ -1,6 +1,6 @@
 ﻿using Convey.CQRS.Events;
+using Lapka.Notification.Application.IncommingEvents;
 using Lapka.Notification.Application.Interfaces;
-using Lapka.Notification.Application.RabbitEvents;
 
 namespace Lapka.Notification.Application.EventHandlers;
 
