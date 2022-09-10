@@ -18,6 +18,7 @@ builder.Services.Configure<DataProtectionTokenProviderOptions>(opt =>
     opt.TokenLifespan = TimeSpan.FromHours(1));
 
 builder.Services.AddInfrastructure(builder.Configuration);
+
 builder.Services.AddApplication(builder.Configuration);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

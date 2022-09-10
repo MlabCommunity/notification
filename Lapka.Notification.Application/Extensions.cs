@@ -12,7 +12,7 @@ namespace Lapka.Notification.Application;
 
 public static class Extensions
 {
-    public static IServiceProvider AddApplication(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddApplication(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<IRequestStorage, RequestStorage.RequestStorage>();
 
@@ -25,6 +25,6 @@ public static class Extensions
             .AddServiceBusEventDispatcher()
             .AddRabbitMq();
 
-        return builder.Build();
+        return builder.Services;
     }
 }

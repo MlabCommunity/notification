@@ -1,6 +1,7 @@
 ﻿using Lapka.Notification.Application.Interfaces;
 using Lapka.Notification.Infrastructure.DataBase;
 using Lapka.Notification.Infrastructure.Exceptions;
+using Lapka.Notification.Infrastructure.MailClient;
 using Lapka.Notification.Infrastructure.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
@@ -21,10 +22,14 @@ public static class Extensions
     public static IServiceCollection AddInfrastructure(this IServiceCollection services,
         IConfiguration configuration)
     {
+        var mailOptions = configuration.GetOptions<MailerOptions>("Mail");
+        services.AddSingleton(mailOptions);
+
         services.AddHostedService<DbMigrator>();
         services.AddScoped<ProjectExceptionMiddleware>();
         services.AddScoped<INotificationHistoryRepository, NotificationHistoryRepository>();
         services.AddScoped<IUserDataRepository, UserDataRepository>();
+        services.AddScoped<IMailer, Mailer>();
 
         var connectionString = configuration.GetConnectionString("postgres");
         services.AddDbContext<DataContext>(x => x.UseNpgsql(connectionString));
