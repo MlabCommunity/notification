@@ -4,5 +4,6 @@ public enum NotificationType
 {
     Email_ConfirmEmailAddress,
     Email_ResetEmailAddress,
-    Email_ResetPassword
+    Email_ResetPassword,
+    Email_Forsubscribers
 }

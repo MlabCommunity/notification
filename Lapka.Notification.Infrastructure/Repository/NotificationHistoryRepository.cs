@@ -1,4 +1,6 @@
 ﻿using Lapka.Notification.Application.Interfaces;
+using Lapka.Notification.Core.Domain;
+using Lapka.Notification.Core.Domain.Entities;
 using Lapka.Notification.Infrastructure.DataBase;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,7 +15,7 @@ internal class NotificationHistoryRepository : INotificationHistoryRepository
         _context = context;
     }
 
-    public async Task CreateNotification(Core.Domain.Entities.NotificationHistory notification)
+    public async Task CreateNotification(NotificationHistory notification)
     {
         await _context.NotificationHistory.AddAsync(notification);
         await _context.SaveChangesAsync();
@@ -28,4 +30,13 @@ internal class NotificationHistoryRepository : INotificationHistoryRepository
             await _context.SaveChangesAsync();
         }
     }
+
+    public async Task UpdateNotifications(List<NotificationHistory> notificationHistories)
+    {
+        _context.NotificationHistory.UpdateRange(notificationHistories);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task<List<NotificationHistory>> GetUnsentNotificationForsubscribers() 
+        => _context.NotificationHistory.Where(x => !x.IsSend && x.Type == NotificationType.Email_Forsubscribers).ToList();
 }

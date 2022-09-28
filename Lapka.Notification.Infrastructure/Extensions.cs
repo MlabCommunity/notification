@@ -1,4 +1,5 @@
 ﻿using Lapka.Notification.Application.Interfaces;
+using Lapka.Notification.Application.Jobs;
 using Lapka.Notification.Infrastructure.DataBase;
 using Lapka.Notification.Infrastructure.Exceptions;
 using Lapka.Notification.Infrastructure.MailClient;
@@ -30,6 +31,9 @@ public static class Extensions
         services.AddScoped<INotificationHistoryRepository, NotificationHistoryRepository>();
         services.AddScoped<IUserDataRepository, UserDataRepository>();
         services.AddScoped<IMailer, Mailer>();
+
+        services.AddHostedService<MailScheduler>();
+        services.AddScoped<RetrySendMailsJob>();
 
         var connectionString = configuration.GetConnectionString("postgres");
         services.AddDbContext<DataContext>(x => x.UseNpgsql(connectionString));

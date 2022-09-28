@@ -1,7 +1,6 @@
 ﻿using Convey.CQRS.Commands;
 using Lapka.Notification.Application.Commands;
 using Lapka.Notification.Application.Interfaces;
-using Newtonsoft.Json.Linq;
 using System.Net.Mail;
 
 namespace Lapka.Notification.Application.CommandHandlers;
