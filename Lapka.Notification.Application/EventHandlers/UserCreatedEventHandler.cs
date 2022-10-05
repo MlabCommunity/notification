@@ -22,6 +22,9 @@ public class UserCreatedEventHandler : IEventHandler<UserCreatedEvent>
             throw new InvalidRequestDataException();
         }
 
+        if (@event.LoginProvider == "Lapka")
+            return;
+
         var user = await _userDataRepository.GetUserDataById(@event.UserId);
         if (user is not null)
             return;
